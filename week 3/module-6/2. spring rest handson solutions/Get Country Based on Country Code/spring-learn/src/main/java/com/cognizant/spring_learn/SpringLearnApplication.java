@@ -2,6 +2,8 @@ package com.cognizant.spring_learn;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,10 +18,19 @@ public class SpringLearnApplication {
 	{
 		LOGGER.info("START");
 		SpringApplication.run(SpringLearnApplication.class, args);
-
+		displayCountry();
 		LOGGER.info("END");
 	}
 
+	public static void displayCountry()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
 
+		Country india = context.getBean("india", Country.class);
+
+
+		LOGGER.debug("Country : {}", india.toString());
+
+	}
 
 }
